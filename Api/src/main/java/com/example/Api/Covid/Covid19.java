@@ -6,15 +6,7 @@ import javax.persistence.*;
 @Table
 public class Covid19 {
     @Id
-    @SequenceGenerator(
-            name = "covid_sequence",
-            sequenceName = "covid_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "covid_sequence"
-    )
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private String country;
     private int Confirmed;
