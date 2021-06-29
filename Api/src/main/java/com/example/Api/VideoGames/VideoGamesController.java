@@ -27,7 +27,15 @@ public class VideoGamesController {
         return this.videoGamesService.getGameById(id);
     }
     @PostMapping
-    public void addNewCountry(@RequestBody Videogames videogames) throws AlreadyExistException {
-        this.videoGamesService.createCountry(videogames);
+    public void addNewGame(@RequestBody Videogames videogames) throws AlreadyExistException {
+        this.videoGamesService.createGame(videogames);
+    }
+    @DeleteMapping(path = "deletion/{id}")
+    public void deleteGame(@PathVariable("id") long id) throws DoesNotExistException {
+        this.videoGamesService.deleteGameById(id);
+    }
+    @PutMapping(path = "{id}")
+    public void updateGame(@PathVariable("id") long id,@RequestParam(required = false) String country,@RequestParam(required = false)String name) throws DoesNotExistException {
+        this.videoGamesService.updateVideoGameContent(id,country,name);
     }
 }

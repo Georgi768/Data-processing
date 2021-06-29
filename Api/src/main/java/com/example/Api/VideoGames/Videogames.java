@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Videogames {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String Countrywhereproduced;
     private String name;
     private String Platform;

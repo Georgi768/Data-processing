@@ -5,6 +5,7 @@ import com.example.Api.Exception.DoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,7 @@ public class VideoGamesService {
         throw new DoesNotExistException();
     }
 
-    public void createCountry(Videogames videogames) throws AlreadyExistException {
+    public void createGame(Videogames videogames) throws AlreadyExistException {
         Optional<Videogames> exist = this.videoGamesRepository.findVideogamesByName(videogames.getName());
         if(exist.isPresent())
         {
@@ -38,5 +39,34 @@ public class VideoGamesService {
         {
             this.videoGamesRepository.save(videogames);
         }
+    }
+
+    public void deleteGameById(long id) throws DoesNotExistException {
+        boolean gameExist = this.videoGamesRepository.existsById(id);
+        if(gameExist)
+        {
+            Videogames game = this.videoGamesRepository.getById(id);
+            this.videoGamesRepository.delete(game);
+        }else
+        {
+            throw new DoesNotExistException();
+        }
+    }
+    @Transactional
+    public void updateVideoGameContent(long id, String country, String name) throws DoesNotExistException {
+        if(country.length() > 0 && name.length() > 0)
+        {
+            boolean isExist = this.videoGamesRepository.existsById(id);
+            if(isExist)
+            {
+                Videogames game = this.videoGamesRepository.getById(id);
+                game.setCountrywhereproduced(country);
+                game.setName(name);
+            }else
+            {
+                throw new DoesNotExistException();
+            }
+        }
+
     }
 }
