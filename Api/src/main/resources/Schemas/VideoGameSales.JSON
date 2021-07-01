@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://www.w3schools.com/VideoGamesSales.JSON",
+  "title": "videoGamesSalesJsonSchema",
+  "description": "This schema describes the videoGameSales json file",
+  "type": "object",
+  "properties": {
+    "countrywhereproduced": {
+      "description": "This shows where the game has been produced",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)*"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 0
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "PC",
+        "X360",
+        "PS2",
+        "PS3",
+        "PS4",
+        "XOne",
+        "N64",
+        "DS",
+        "GB",
+        "NES",
+        "3DS",
+        "Will",
+        "SNES",
+        "PSP",
+        "WiiU",
+        "GC"
+      ]
+    },
+    "yearofrelease": {
+      "type": "integer",
+      "minimum": 1980,
+      "maximum": 2020
+    },
+    "genre": {
+      "type": "string",
+      "enum": [
+        "Platform",
+        "Action",
+        "Puzzle",
+        "Fighting",
+        "Strategy",
+        "Racing",
+        "Shooter",
+        "Role-playing",
+        "Misx",
+        "simulation",
+        "Sports"
+      ]
+    },
+    "publisher": {
+      "type": "string",
+      "minLength": 1
+    },
+    "na_Sales": {
+      "$ref": "#/definitions/salesStatistics"
+    },
+    "eu_Sales": {
+      "$ref": "#/definitions/salesStatistics"
+    },
+    "jp_Sales": {
+      "$ref": "#/definitions/salesStatistics"
+    },
+    "other_Sales": {
+      "$ref": "#/definitions/salesStatistics"
+    },
+    "global_Sales": {
+      "$ref": "#/definitions/salesStatistics"
+    },
+    "critic_score": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 100
+    },
+    "critic_count": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 115
+    },
+    "user_score": {
+      "type": "number",
+      "exclusiveMinimum": 0.0,
+      "exclusiveMaximum": 10.0
+    },
+    "usercount": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 12000
+    },
+    "developer": {
+      "type": "string",
+      "uniqueItems": true,
+      "minLength": 1
+    },
+    "rating": {
+      "type": "string",
+      "minLength": 1,
+      "enum": [
+        "E",
+        "M",
+        "T",
+        "AO",
+        "RP",
+        "E10+"
+      ]
+    }
+  },
+  "required": [
+    "countrywhereproduced",
+    "name",
+    "platform",
+    "yearofrelease",
+    "genre",
+    "na_Sales",
+    "eu_Sales",
+    "jp_Sales",
+    "other_Sales",
+    "global_Sales",
+    "critic_score",
+    "critic_count",
+    "user_score",
+    "usercount",
+    "developer",
+    "rating"
+  ],
+  "definitions": {
+    "salesStatistics": {
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}

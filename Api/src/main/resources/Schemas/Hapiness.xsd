@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.w3schools.com"
+           elementFormDefault="qualified"
+           xmlns="https://www.w3schools.com"
+>
+<xs:element name="WorldWideHappiness" type="HappinessStructure"/>
+
+    <xs:complexType name="HappinessStructure">
+        <xs:sequence>
+            <xs:element name="Record" type="RecordInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="RecordInfo">
+        <xs:sequence>
+            <xs:element name="Country" type="CountryInfo"/>
+            <xs:element name="Region" type="CountryInfo"/>
+            <xs:element name="HappinessRank">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                        <xs:maxInclusive value="157"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="HappinessScore" type="statistics"/>
+            <xs:element name="ConfidenceScore" type="scoreOfConfidence"/>
+            <xs:element name="ContributionForHappiness" type="HappinessContribution"/>
+            <xs:element name="DystopiaResidual" type="statistics"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="CountryInfo">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:pattern value="[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="statistics">
+        <xs:restriction base="xs:double">
+            <xs:minInclusive value="0.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="scoreOfConfidence">
+        <xs:sequence>
+            <xs:element name="LowerConfidenceInterval" type="statistics"/>
+            <xs:element name="UpperConfidenceInterval" type="statistics"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="HappinessContribution">
+        <xs:sequence>
+            <xs:element name="Economy" type="statistics"/>
+            <xs:element name="Family" type="statistics"/>
+            <xs:element name="Health" type="statistics"/>
+            <xs:element name="Freedom" type="statistics"/>
+            <xs:element name="Trust" type="statistics"/>
+            <xs:element name="Generosity" type="statistics"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

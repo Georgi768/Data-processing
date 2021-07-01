@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://www.w3schools.com/HappinessJSONSchema.JSON",
+  "title": "videoGamesSalesJsonSchema",
+  "description": "This schema describes the Happiness  json file",
+  "type": "object",
+  "properties": {
+    "country": {
+      "$ref": "#/definitions/CountryInfo"
+    },
+    "region": {
+      "$ref": "#/definitions/CountryInfo"
+    },
+    "happiness_rank": {
+      "type": "integer",
+      "minimum": 1,
+      "uniqueItems": true
+    },
+    "happiness_score": {
+      "type": "number",
+      "minimum": 0.0
+    },
+    "lower_confidence_interval": {
+      "description": "This represents the Lower Confidence Interval of the Happiness Score",
+      "$ref": "#/definitions/Confidence"
+    },
+    "upper_confidence_interval": {
+      "description": "This represents the Upper Confidence Interval of the Happiness Score",
+      "$ref": "#/definitions/Confidence"
+    },
+    "economy_gdp_per_capita": {
+      "$ref": "#/definitions/HappinessContribution",
+      "description": "The extent to which GDP contributes to the calculation of the Happiness Score."
+    },
+    "family": {
+      "$ref": "#/definitions/HappinessContribution",
+      "description": "The extent to which Family contributes to the calculation of the Happiness Score"
+    },
+    "health_life_expectancy": {
+      "$ref": "#/definitions/HappinessContribution",
+      "description": "The extent to which Life expectancy contributed to the calculation of the Happiness Score"
+    },
+    "freedom": {
+      "$ref": "#/definitions/HappinessContribution",
+      "description": "The extent to which Freedom contributed to the calculation of the Happiness Score"
+    },
+    "trust_government_corruption": {
+      "$ref": "#/definitions/HappinessContribution",
+      "description": "The extent to which Perception of Corruption contributes to Happiness Score"
+    },
+    "generosity": {
+      "$ref": "#/definitions/HappinessContribution",
+      "description": "The extent to which Generosity contributed to the calculation of the Happiness Score"
+    },
+    "dystopia_residual": {
+      "$ref": "#/definitions/HappinessContribution",
+      "description": "The extent to which Dystopia Residual contributed to the calculation of the Happiness Score."
+    }
+  },
+  "required": [
+    "country",
+    "region",
+    "happiness_rank",
+    "happiness_score",
+    "lower_confidence_interval",
+    "upper_confidence_interval",
+    "economy_gdp_per_capita",
+    "family",
+    "health_life_expectancy",
+    "freedom",
+    "trust_government_corruption",
+    "generosity",
+    "dystopia_residual"
+  ],
+  "definitions": {
+    "CountryInfo": {
+      "type": "string",
+      "pattern": "[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)*",
+      "uniqueItems": true
+    },
+    "Confidence": {
+      "type": "number",
+      "minimum": 0.0
+    },
+    "HappinessContribution": {
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}

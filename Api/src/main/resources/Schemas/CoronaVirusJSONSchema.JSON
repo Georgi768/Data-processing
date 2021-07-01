@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://www.w3schools.com/VideoGamesSales",
+  "title": "videoGamesSalesJsonSchema",
+  "description": "This schema describes the Covid-19 json file",
+  "type": "object",
+  "properties": {
+    "Country": {
+      "type": "string",
+      "pattern": "[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)*",
+      "minLength": 1,
+      "uniqueItems": true
+    },
+    "Confirmed" : {
+      "$ref": "#/definitions/statistics"
+    },
+    "Deaths": {
+      "$ref": "#/definitions/statistics"
+    },
+    "Recovered": {
+      "$ref": "#/definitions/statistics"
+    },
+    "Active" : {
+      "$ref": "#/definitions/statistics"
+    },
+    "NewStatistics": {
+      "type": "object",
+      "uniqueItems": true,
+      "properties": {
+        "NewCases": {
+          "$ref": "#/definitions/statistics"
+        },
+        "NewDeaths": {
+          "$ref": "#/definitions/statistics"
+        },
+        "NewRecovered": {
+          "$ref": "#/definitions/statistics"
+        }
+      },
+      "required": ["NewCases","NewDeaths","NewRecovered"]
+    },
+    "Division": {
+      "type": "object",
+      "uniqueItems": true,
+      "properties": {
+        "DeathsDividedByOneHundredCases": {
+          "$ref": "#/definitions/NumberStatistics"
+        },
+        "RecoveredDividedByOneHundredCases": {
+          "$ref": "#/definitions/NumberStatistics"
+        },
+        "DeathsDividedByOneHundredRecovered": {
+          "$ref": "#/definitions/NumberStatistics"
+        }
+      },
+      "required": ["DeathsDividedByOneHundredCases","RecoveredDividedByOneHundredCases","DeathsDividedByOneHundredRecovered"]
+    },
+    "WeekStatistics": {
+      "type": "object",
+      "uniqueItems": true,
+      "properties": {
+        "ConfirmedLastWeek": {
+          "$ref": "#/definitions/NumberStatistics"
+        },
+        "OneWeekChange": {
+          "type": "integer",
+          "pattern": "-?[0-9]{0,10}"
+        },
+        "OneWeekPercentageIncrease": {
+          "type": "number"
+        }
+      },
+      "required": ["ConfirmedLastWeek","OneWeekChange","OneWeekPercentageIncrease"]
+    },
+    "WHORegion": {
+      "type": "string",
+      "enum": ["Western Pacific","Europe","South-East Asia","Americas","Eastern Mediterranean","Africa"]
+    }
+  },
+  "required": ["Country","Confirmed","Deaths","Recovered","Active","NewStatistics","Division","WeekStatistics"],
+
+  "definitions": {
+    "statistics": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "NumberStatistics": {
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}

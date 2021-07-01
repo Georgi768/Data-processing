@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.w3schools.com"
+           elementFormDefault="qualified"
+           xmlns="https://www.w3schools.com">
+
+<xs:element name="Records" type="RecordsPerCountry"/>
+
+    <xs:complexType name="RecordsPerCountry">
+        <xs:sequence>
+            <xs:element name="Country" type="CountryList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CountryList">
+        <xs:sequence>
+            <xs:element name="Name" type="nameRestriction"/>
+            <xs:element name="Confirmed" type="elementRestriction"/>
+            <xs:element name="Deaths" type="elementRestriction"/>
+            <xs:element name="Recovered" type="elementRestriction"/>
+            <xs:element name="Active" type="elementRestriction"/>
+            <xs:element name="NewStatistic" type="newReleasedStatistics"/>
+            <xs:element name="Division" type="DivisionPerCountry"/>
+            <xs:element name="WeekStatistic" type="WeeklyStatistics"/>
+            <xs:element name="WHORegion" type="Region"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="nameRestriction">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:pattern value="[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="elementRestriction">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="newReleasedStatistics">
+        <xs:sequence>
+            <xs:element name="NewCases" type="elementRestriction"/>
+            <xs:element name="NewDeaths" type="elementRestriction"/>
+            <xs:element name="NewRecovered" type="elementRestriction"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DivisionPerCountry">
+        <xs:sequence>
+            <xs:element name="DeathsDividedByOneHundredCases" type="divisionRestriction"/>
+            <xs:element name="RecoveredDividedByOneHundredCases" type="divisionRestriction"/>
+            <xs:element name="DeathsDividedByOneHundredRecovered" type="divisionRestriction"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="divisionRestriction">
+        <xs:restriction base="xs:double">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="negativeNumbers">
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="-?[0-9]{0,10}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="WeeklyStatistics">
+        <xs:sequence>
+            <xs:element name="ConfirmedLastWeek" type="divisionRestriction"/>
+            <xs:element name="OneWeekChange" type="negativeNumbers"/>
+            <xs:element name="OneWeekPercentageIncrease" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Region">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Western Pacific"/>
+            <xs:enumeration value="Americas"/>
+            <xs:enumeration value="Europe"/>
+            <xs:enumeration value="South-East Asia"/>
+            <xs:enumeration value="Eastern Mediterranean"/>
+            <xs:enumeration value="Africa"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

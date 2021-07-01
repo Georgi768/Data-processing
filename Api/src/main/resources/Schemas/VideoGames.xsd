@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xS="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.w3schools.com"
+           elementFormDefault="qualified"
+           xmlns="https://www.w3schools.com"
+>
+    <xs:element name="VideoGames" type="videoGamesTypes"/>
+
+
+    <xs:complexType name="videoGames">
+        <xs:sequence>
+            <xs:element name="CountryWhereProduced">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)*"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Name" type="gameInformation"/>
+            <xs:element name="YearOfRelease">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1980"/>
+                        <xs:maxInclusive value="2020"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Publisher" type="PublisherRestriction"/>
+            <xs:element name="Sales" type="salesInformation"/>
+            <xs:element name="Score" type="scoresInformation"/>
+            <xs:element name="Developer" type="developerRestriction"/>
+            <xs:element name="Rating" type="ratingTypes"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="gameInformation">
+        <xs:complexContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="platform" type="platformType" use="required"/>
+                <xs:attribute name="genre" type="genres" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="platformType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:enumeration value="PC"/>
+            <xs:enumeration value="X360"/>
+            <xs:enumeration value="PS2"/>
+            <xs:enumeration value="PS3"/>
+            <xs:enumeration value="PS4"/>
+            <xs:enumeration value="XOne"/>
+            <xs:enumeration value="N64"/>
+            <xs:enumeration value="DS"/>
+            <xs:enumeration value="GB"/>
+            <xs:enumeration value="NES"/>
+            <xs:enumeration value="3DS"/>
+            <xs:enumeration value="Will"/>
+            <xs:enumeration value="SNES"/>
+            <xs:enumeration value="PSP"/>
+            <xs:enumeration value="WiiU"/>
+            <xs:enumeration value="GC"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="genres">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:enumeration value="Platform"/>
+            <xs:enumeration value="Action"/>
+            <xs:enumeration value="Puzzle"/>
+            <xs:enumeration value="Fighting"/>
+            <xs:enumeration value="Strategy"/>
+            <xs:enumeration value="Racing"/>
+            <xs:enumeration value="Shooter"/>
+            <xs:enumeration value="Role-playing"/>
+            <xs:enumeration value="Misx"/>
+            <xs:enumeration value="Role-playing"/>
+            <xs:enumeration value="Simulation"/>
+            <xs:enumeration value="Sports"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="salesInformation">
+        <xs:sequence>
+            <xs:element name="NA_sales" type="salesFigures"/>
+            <xs:element name="EU_sales" type="salesFigures"/>
+            <xs:element name="JP_sales" type="salesFigures"/>
+            <xs:element name="Other_sales" type="salesFigures"/>
+            <xs:element name="Global_sales" type="salesFigures"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="salesFigures">
+        <xs:restriction base="xs:double">
+            <xS:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="PublisherRestriction">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:pattern value="\p{Lu}.*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="videoGamesTypes">
+        <xs:sequence>
+            <xs:element name="videoGame" type="videoGames" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="scoresInformation">
+        <xs:sequence>
+
+            <xs:element name="CriticsScore">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="CriticsCount">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="115"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="UserScore">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0.0"/>
+                        <xs:maxInclusive value="10.0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+
+            <xs:element name="UserCount">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="12000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="developerRestriction">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:pattern value="\p{Lu}.*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ratingTypes">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="AO"/>
+            <xs:enumeration value="RP"/>
+            <xs:enumeration value="E10+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+</xs:schema>
+
+<!--[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)* -->

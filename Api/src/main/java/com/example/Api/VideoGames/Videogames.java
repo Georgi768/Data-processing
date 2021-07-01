@@ -1,9 +1,9 @@
 package com.example.Api.VideoGames;
 
-import com.sun.istack.Nullable;
-
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 @Table
 public class Videogames {
@@ -13,7 +13,7 @@ public class Videogames {
     private String Countrywhereproduced;
     private String name;
     private String Platform;
-    private Integer Year_of_Release;
+    private Integer yearofrelease;
     private String Genre;
     private String Publisher;
     private double NA_Sales;
@@ -24,7 +24,7 @@ public class Videogames {
     private Integer critic_score;
     private Integer critic_count;
     private Double user_score;
-    private Integer user_Count;
+    private Integer usercount;
     private String Developer;
     private String Rating;
 
@@ -60,12 +60,12 @@ public class Videogames {
         Platform = platform;
     }
 
-    public Integer getYear_of_Release() {
-        return Year_of_Release;
+    public Integer getYearofrelease() {
+        return yearofrelease;
     }
 
-    public void setYear_of_Release(Integer year_of_Release) {
-        Year_of_Release = year_of_Release;
+    public void setYearofrelease(Integer yearofrelease) {
+        this.yearofrelease = yearofrelease;
     }
 
     public String getGenre() {
@@ -148,12 +148,12 @@ public class Videogames {
         this.user_score = user_score;
     }
 
-    public Integer getUser_Count() {
-        return user_Count;
+    public Integer getUsercount() {
+        return usercount;
     }
 
-    public void setUser_Count(Integer user_Count) {
-        this.user_Count = user_Count;
+    public void setUsercount(Integer usercount) {
+        this.usercount = usercount;
     }
 
     public String getDeveloper() {
@@ -175,11 +175,11 @@ public class Videogames {
     public Videogames() {
     }
 
-    public Videogames(String countrywhereproduced, String name, String platform, Integer year_of_Release, String genre, String publisher, double NA_Sales, double EU_Sales, double JP_Sales, double other_Sales, double global_Sales, Integer critic_score, Integer critic_count, Double user_score, Integer user_Count, String developer, String rating) {
+    public Videogames(String countrywhereproduced, String name, String platform, Integer yearofrelease, String genre, String publisher, double NA_Sales, double EU_Sales, double JP_Sales, double other_Sales, double global_Sales, Integer critic_score, Integer critic_count, Double user_score, Integer usercount, String developer, String rating) {
         Countrywhereproduced = countrywhereproduced;
         this.name = name;
         Platform = platform;
-        Year_of_Release = year_of_Release;
+        this.yearofrelease = yearofrelease;
         Genre = genre;
         Publisher = publisher;
         this.NA_Sales = NA_Sales;
@@ -190,7 +190,7 @@ public class Videogames {
         this.critic_score = critic_score;
         this.critic_count = critic_count;
         this.user_score = user_score;
-        this.user_Count = user_Count;
+        this.usercount = usercount;
         Developer = developer;
         Rating = rating;
     }

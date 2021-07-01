@@ -27,6 +27,13 @@ public class WorldHappinessService {
 
     public void addCountry(Worldhappiness worldhappiness) throws AlreadyExistException {
         boolean exist = this.worldHappinessRepository.existsById(worldhappiness.getId());
+//        if(exist || this.worldHappinessRepository.getWorldhappinessesByhappiness_rank(worldhappiness.getHappiness_rank()).isPresent())
+//        {
+//            throw new AlreadyExistException();
+//        }else
+//        {
+//            this.worldHappinessRepository.save(worldhappiness);
+//        }
         if(exist)
         {
             throw new AlreadyExistException();

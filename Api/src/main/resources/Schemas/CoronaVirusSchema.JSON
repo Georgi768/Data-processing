@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://www.w3schools.com/VideoGamesSales",
+  "title": "videoGamesSalesJsonSchema",
+  "description": "This schema describes the Covid-19 json file",
+  "type": "object",
+  "properties": {
+    "country": {
+      "type": "string",
+      "pattern": "[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)*",
+      "minLength": 1,
+      "uniqueItems": true
+    },
+    "confirmed" : {
+      "$ref": "#/definitions/statistics"
+    },
+    "deaths": {
+      "$ref": "#/definitions/statistics"
+    },
+    "recovered": {
+      "$ref": "#/definitions/statistics"
+    },
+    "active" : {
+      "$ref": "#/definitions/statistics"
+    },
+    "new_cases": {
+      "$ref": "#/definitions/statistics"
+    },
+    "new_deaths": {
+      "$ref": "#/definitions/statistics"
+    },
+    "new_recovered": {
+      "$ref": "#/definitions/statistics"
+    },
+    "deaths_100_cases": {
+      "$ref": "#/definitions/NumberStatistics"
+    },
+    "recovered_100_cases": {
+      "$ref": "#/definitions/NumberStatistics"
+    },
+    "deaths_100_recovered": {
+      "$ref": "#/definitions/NumberStatistics"
+    },
+    "confirmed_last_week": {
+      "$ref": "#/definitions/NumberStatistics"
+    },
+    "one_week_change": {
+      "type": "integer",
+      "pattern": "-?[0-9]{0,10}"
+    },
+
+    "one_week_increase": {
+      "type": "number"
+    },
+    "whoregion": {
+      "type": "string",
+      "enum": ["Western Pacific","Europe","South-East Asia","Americas","Eastern Mediterranean","Africa"]
+    }
+  },
+  "required": ["country","confirmed","deaths","recovered","active","new_cases","new_deaths","new_recovered","deaths_100_cases","recovered_100_cases","deaths_100_recovered","confirmed_last_week","one_week_change","one_week_increase","whoregion"],
+  "definitions": {
+    "statistics": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "NumberStatistics": {
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}

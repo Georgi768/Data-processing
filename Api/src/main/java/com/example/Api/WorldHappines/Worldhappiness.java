@@ -1,12 +1,14 @@
 package com.example.Api.WorldHappines;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table
+@XmlRootElement
 public class Worldhappiness {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String country;
     private String region;
@@ -169,4 +171,5 @@ public class Worldhappiness {
     public void setDystopia_residual(double dystopia_residual) {
         this.dystopia_residual = dystopia_residual;
     }
+
 }

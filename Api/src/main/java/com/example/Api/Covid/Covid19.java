@@ -1,9 +1,11 @@
 package com.example.Api.Covid;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table
+@XmlRootElement
 public class Covid19 {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -18,14 +20,14 @@ public class Covid19 {
     private int New_recovered;
     private double Deaths_100_cases;
     private double Recovered_100_cases;
-    private double Deaths_100_Recovered;
+    private double deaths_100_recovered;
     private int Confirmed_last_week;
     private int one_week_change;
     private double one_week_increase;
     private String WHORegion;
 
 
-    public Covid19(String countryRegion, int confirmed, int deaths, int recovered, int active, int new_cases, int new_deaths, int new_recovered, double deaths_100_cases, double recovered_100_cases, double deaths_100_Recovered, int confirmed_last_week, int one_week_change, double one_week_increase, String WHORegion) {
+    public Covid19(String countryRegion, int confirmed, int deaths, int recovered, int active, int new_cases, int new_deaths, int new_recovered, double deaths_100_cases, double recovered_100_cases, double deaths_100_recovered, int confirmed_last_week, int one_week_change, double one_week_increase, String WHORegion) {
         this.country = countryRegion;
         Confirmed = confirmed;
         Deaths = deaths;
@@ -36,7 +38,7 @@ public class Covid19 {
         New_recovered = new_recovered;
         Deaths_100_cases = deaths_100_cases;
         Recovered_100_cases = recovered_100_cases;
-        Deaths_100_Recovered = deaths_100_Recovered;
+        this.deaths_100_recovered = deaths_100_recovered;
         Confirmed_last_week = confirmed_last_week;
         this.one_week_change = one_week_change;
         this.one_week_increase = one_week_increase;
@@ -135,12 +137,12 @@ public class Covid19 {
         Recovered_100_cases = recovered_100_cases;
     }
 
-    public double getDeaths_100_Recovered() {
-        return Deaths_100_Recovered;
+    public double getDeaths_100_recovered() {
+        return deaths_100_recovered;
     }
 
-    public void setDeaths_100_Recovered(double deaths_100_Recovered) {
-        Deaths_100_Recovered = deaths_100_Recovered;
+    public void setDeaths_100_recovered(double deaths_100_recovered) {
+        this.deaths_100_recovered = deaths_100_recovered;
     }
 
     public int getConfirmed_last_week() {
