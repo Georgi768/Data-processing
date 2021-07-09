@@ -26,6 +26,7 @@ public class WorldHappinessService {
     }
 
     public void addCountry(Worldhappiness worldhappiness) throws AlreadyExistException {
+        //fix the risk, make sure to search for the country name and check if this exist in the database
         boolean exist = this.worldHappinessRepository.existsById(worldhappiness.getId());
 //        if(exist || this.worldHappinessRepository.getWorldhappinessesByhappiness_rank(worldhappiness.getHappiness_rank()).isPresent())
 //        {
@@ -55,7 +56,7 @@ public class WorldHappinessService {
     }
     @Transactional
     public void updateCountry(long id, String country, String region) throws DoesNotExistException {
-        if(country.length() > 0 && region.length() > 0)
+        if(country.length() > 0 && Character.isUpperCase(country.charAt(0)) && region.length() > 0 && Character.isUpperCase(region.charAt(0)))
         {
             boolean doesExist = this.worldHappinessRepository.existsById(id);
             if(doesExist)
@@ -67,6 +68,13 @@ public class WorldHappinessService {
             {
                 throw new DoesNotExistException();
             }
+        }else
+        {
+            throw new RuntimeException("Invalid input");
         }
+    }
+
+    public List<Worldhappiness> getHappinessCountry(String countryName) {
+        return this.worldHappinessRepository.findCountryBycountry(countryName);
     }
 }

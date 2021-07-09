@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="videogames">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="countrywhereproduced">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)*"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="name">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)*"/>
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="platform">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="PC"/>
+                            <xs:enumeration value="X360"/>
+                            <xs:enumeration value="PS2"/>
+                            <xs:enumeration value="PS3"/>
+                            <xs:enumeration value="PS4"/>
+                            <xs:enumeration value="XOne"/>
+                            <xs:enumeration value="N64"/>
+                            <xs:enumeration value="DS"/>
+                            <xs:enumeration value="GB"/>
+                            <xs:enumeration value="NES"/>
+                            <xs:enumeration value="3DS"/>
+                            <xs:enumeration value="Will"/>
+                            <xs:enumeration value="SNES"/>
+                            <xs:enumeration value="PSP"/>
+                            <xs:enumeration value="WiiU"/>
+                            <xs:enumeration value="GC"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="yearofrelease">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1980"/>
+                            <xs:maxInclusive value="2020"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="genre">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Platform"/>
+                            <xs:enumeration value="Action"/>
+                            <xs:enumeration value="Puzzle"/>
+                            <xs:enumeration value="Fighting"/>
+                            <xs:enumeration value="Strategy"/>
+                            <xs:enumeration value="Racing"/>
+                            <xs:enumeration value="Shooter"/>
+                            <xs:enumeration value="Role-playing"/>
+                            <xs:enumeration value="Misx"/>
+                            <xs:enumeration value="Role-playing"/>
+                            <xs:enumeration value="Simulation"/>
+                            <xs:enumeration value="Sports"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+
+                <xs:element name="publisher">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:pattern value="\p{Lu}.*"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="na_sales">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:double">
+                            <xs:minInclusive value="0"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="eu_sales">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:double">
+                            <xs:minInclusive value="0"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="jp_sales">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:double">
+                            <xs:minInclusive value="0"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="other_sales">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:double">
+                            <xs:minInclusive value="0"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="global_sales">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:double">
+                            <xs:minInclusive value="0"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="critic_score">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="100"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="critic_count">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="115"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="user_score">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:double">
+                            <xs:minInclusive value="0.0"/>
+                            <xs:maxInclusive value="10.0"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="usercount">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="12000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="developer">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:pattern value="\p{Lu}.*"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="rating">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:enumeration value="E"/>
+                            <xs:enumeration value="T"/>
+                            <xs:enumeration value="M"/>
+                            <xs:enumeration value="AO"/>
+                            <xs:enumeration value="RP"/>
+                            <xs:enumeration value="E10+"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+

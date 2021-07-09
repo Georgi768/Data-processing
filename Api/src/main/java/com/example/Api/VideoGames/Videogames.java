@@ -10,17 +10,17 @@ public class Videogames {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    private String Countrywhereproduced;
+    private String countrywhereproduced;
     private String name;
     private String Platform;
     private Integer yearofrelease;
     private String Genre;
     private String Publisher;
-    private double NA_Sales;
-    private double EU_Sales;
-    private double JP_Sales;
-    private double Other_Sales;
-    private double Global_Sales;
+    private double na_sales;
+    private double eu_sales;
+    private double jp_sales;
+    private double other_sales;
+    private double global_sales;
     private Integer critic_score;
     private Integer critic_count;
     private Double user_score;
@@ -37,11 +37,11 @@ public class Videogames {
     }
 
     public String getCountrywhereproduced() {
-        return Countrywhereproduced;
+        return countrywhereproduced;
     }
 
     public void setCountrywhereproduced(String countrywhereproduced) {
-        Countrywhereproduced = countrywhereproduced;
+        this.countrywhereproduced = countrywhereproduced;
     }
 
     public String getName() {
@@ -84,44 +84,44 @@ public class Videogames {
         Publisher = publisher;
     }
 
-    public double getNA_Sales() {
-        return NA_Sales;
+    public double getNa_sales() {
+        return na_sales;
     }
 
-    public void setNA_Sales(double NA_Sales) {
-        this.NA_Sales = NA_Sales;
+    public void setNa_sales(double na_sales) {
+        this.na_sales = na_sales;
     }
 
-    public double getEU_Sales() {
-        return EU_Sales;
+    public double getEu_sales() {
+        return eu_sales;
     }
 
-    public void setEU_Sales(double EU_Sales) {
-        this.EU_Sales = EU_Sales;
+    public void setEu_sales(double eu_sales) {
+        this.eu_sales = eu_sales;
     }
 
-    public double getJP_Sales() {
-        return JP_Sales;
+    public double getJp_sales() {
+        return jp_sales;
     }
 
-    public void setJP_Sales(double JP_Sales) {
-        this.JP_Sales = JP_Sales;
+    public void setJp_sales(double jp_sales) {
+        this.jp_sales = jp_sales;
     }
 
-    public double getOther_Sales() {
-        return Other_Sales;
+    public double getOther_sales() {
+        return other_sales;
     }
 
-    public void setOther_Sales(double other_Sales) {
-        Other_Sales = other_Sales;
+    public void setOther_sales(double other_sales) {
+        this.other_sales = other_sales;
     }
 
-    public double getGlobal_Sales() {
-        return Global_Sales;
+    public double getGlobal_sales() {
+        return global_sales;
     }
 
-    public void setGlobal_Sales(double global_Sales) {
-        Global_Sales = global_Sales;
+    public void setGlobal_sales(double global_sales) {
+        this.global_sales = global_sales;
     }
 
     public Integer getCritic_score() {
@@ -175,18 +175,18 @@ public class Videogames {
     public Videogames() {
     }
 
-    public Videogames(String countrywhereproduced, String name, String platform, Integer yearofrelease, String genre, String publisher, double NA_Sales, double EU_Sales, double JP_Sales, double other_Sales, double global_Sales, Integer critic_score, Integer critic_count, Double user_score, Integer usercount, String developer, String rating) {
-        Countrywhereproduced = countrywhereproduced;
+    public Videogames(String countrywhereproduced, String name, String platform, Integer yearofrelease, String genre, String publisher, double na_sales, double eu_sales, double jp_sales, double othersales, double globalsales, Integer critic_score, Integer critic_count, Double user_score, Integer usercount, String developer, String rating) {
+        this.countrywhereproduced = countrywhereproduced;
         this.name = name;
         Platform = platform;
         this.yearofrelease = yearofrelease;
         Genre = genre;
         Publisher = publisher;
-        this.NA_Sales = NA_Sales;
-        this.EU_Sales = EU_Sales;
-        this.JP_Sales = JP_Sales;
-        Other_Sales = other_Sales;
-        Global_Sales = global_Sales;
+        this.na_sales = na_sales;
+        this.eu_sales = eu_sales;
+        this.jp_sales = jp_sales;
+        other_sales = othersales;
+        global_sales = globalsales;
         this.critic_score = critic_score;
         this.critic_count = critic_count;
         this.user_score = user_score;

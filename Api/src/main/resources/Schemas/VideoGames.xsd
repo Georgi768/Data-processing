@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xS="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="https://www.w3schools.com"
-           elementFormDefault="qualified"
-           xmlns="https://www.w3schools.com"
->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xS="http://www.w3.org/2001/XMLSchema">
     <xs:element name="VideoGames" type="videoGamesTypes"/>
 
 
@@ -16,7 +12,9 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="Name" type="gameInformation"/>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="platform" type="platformType"/>
+            <xs:element name="genre" type="genres" />
             <xs:element name="YearOfRelease">
                 <xs:simpleType>
                     <xs:restriction base="xs:int">
@@ -32,16 +30,6 @@
             <xs:element name="Rating" type="ratingTypes"/>
         </xs:sequence>
     </xs:complexType>
-
-    <xs:complexType name="gameInformation">
-        <xs:complexContent>
-            <xs:extension base="xs:string">
-                <xs:attribute name="platform" type="platformType" use="required"/>
-                <xs:attribute name="genre" type="genres" use="required"/>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
     <xs:simpleType name="platformType">
         <xs:restriction base="xs:string">
             <xs:minLength value="1"/>

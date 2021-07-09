@@ -36,17 +36,26 @@ public class VideoGamesController extends XmlJsonValidator{
     }
 
     @GetMapping(path = "/xml/{id}", produces = MediaType.APPLICATION_XML_VALUE)
-    public Optional<Videogames> getVideoGameByIdXML(@PathVariable("id") long id) throws DoesNotExistException {
+        public Optional<Videogames> getVideoGameByIdXML(@PathVariable("id") long id) throws DoesNotExistException {
         return this.videoGamesService.getGameById(id);
     }
 
-    @PostMapping
-    public void addNewGame(@RequestBody Videogames videogames) throws AlreadyExistException {
+    @GetMapping(path = "/xml/name=/{name}" , produces = MediaType.APPLICATION_XML_VALUE)
+    public List<Videogames> getVideoGameByCountryInXml(@PathVariable("name") String countryName)
+    {
+       return this.videoGamesService.getCountryByName(countryName);
+    }
+    @GetMapping(path = "/json/name=/{name}" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Videogames> getVideoGameByCountryInJson(@PathVariable("name") String countryName)
+    {
+        return this.videoGamesService.getCountryByName(countryName);
+    }
 
-        if(this.validateJson(videogames, "Schemas/VideoGameSales.JSON"))
-        {
-            this.videoGamesService.createGame(videogames);
-        }
+    @PostMapping
+    public void addNewGame(@RequestBody Videogames videogames) throws AlreadyExistException{
+        if(this.validateJson(this,videogames,"Schemas/VideoGameSales.JSON"))
+        this.videoGamesService.createGame(videogames);
+
     }
 
     @DeleteMapping(path = "deletion/{id}")

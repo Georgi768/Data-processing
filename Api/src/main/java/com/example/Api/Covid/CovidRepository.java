@@ -10,6 +10,8 @@ import java.util.Optional;
 @Repository
 public interface CovidRepository extends JpaRepository<Covid19, Long> {
 
-    Optional<Covid19> findCovid19ByCountry(String country);
+    Optional<Covid19> findCovid19Bycountry(String country);
 
+    @Query("SELECT c FROM Covid19 c WHERE  c.country = ?1")
+    List<Covid19> findAllByCountry(String country);
 }

@@ -1,5 +1,6 @@
 package com.example.Api.WorldHappines;
 
+import com.example.Api.Covid.Covid19;
 import com.example.Api.Exception.AlreadyExistException;
 import com.example.Api.Exception.DoesNotExistException;
 import com.example.Api.XmlJsonValidator;
@@ -46,10 +47,19 @@ public class WorldHappinessController extends XmlJsonValidator {
     public Optional<Worldhappiness> getSpecificCountryXML(@PathVariable("id") long id) {
         return this.worldHappinessService.getCountryById(id);
     }
-
+    @GetMapping(path = "/xml/name=/{name}" , produces = MediaType.APPLICATION_XML_VALUE)
+    public List<Worldhappiness> getCountryByNameInXml(@PathVariable("name") String countryName)
+    {
+        return this.worldHappinessService.getHappinessCountry(countryName);
+    }
+    @GetMapping(path = "/json/name=/{name}" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Worldhappiness> getCountryByNameInJSON(@PathVariable("name") String countryName)
+    {
+        return this.worldHappinessService.getHappinessCountry(countryName);
+    }
     @PostMapping
     public void addNewCountry(@RequestBody Worldhappiness worldhappiness) throws AlreadyExistException {
-        if(this.validateJson(worldhappiness,"Schemas/HappinessJSONSchema.JSON"))
+        if(this.validateJson(this,worldhappiness,"Schemas/HappinessJSONSchema.JSON"))
         {
             this.worldHappinessService.addCountry(worldhappiness);
         }

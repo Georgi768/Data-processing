@@ -2,6 +2,7 @@ package com.example.Api.Covid;
 
 import com.example.Api.Exception.AlreadyExistException;
 import com.example.Api.Exception.DoesNotExistException;
+import com.example.Api.VideoGames.Videogames;
 import com.example.Api.XmlJsonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "api/covid")
 public class CovidController extends XmlJsonValidator {
@@ -40,10 +42,21 @@ public class CovidController extends XmlJsonValidator {
         return this.covidService.getCountryById(id);
     }
 
+    @GetMapping(path = "/xml/name=/{name}" , produces = MediaType.APPLICATION_XML_VALUE)
+    public List<Covid19> getCountryByNameInXml(@PathVariable("name") String countryName)
+    {
+        return this.covidService.getCovidCountry(countryName);
+    }
+    @GetMapping(path = "/json/name=/{name}" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Covid19> getCountryByNameInJSON(@PathVariable("name") String countryName)
+    {
+        return this.covidService.getCovidCountry(countryName);
+    }
+
+
     @PostMapping
     public void addNewCountry(@RequestBody Covid19 covid19) throws AlreadyExistException {
-        if(this.validateJson(covid19,"Schemas/CoronaVirusSchema.JSON"))
-        {
+        if (this.validateJson(this,covid19, "Schemas/CoronaVirusSchema.JSON")) {
             this.covidService.addNewCovidCountryCase(covid19);
         }
     }

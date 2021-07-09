@@ -13,7 +13,8 @@
     },
     "name": {
       "type": "string",
-      "minLength": 0
+      "minLength": 1,
+      "pattern": "[A-Z][a-zA-Z]*( [A-Z][a-zA-Z]*)*"
     },
     "platform": {
       "type": "string",
@@ -61,19 +62,19 @@
       "type": "string",
       "minLength": 1
     },
-    "na_Sales": {
+    "na_sales": {
       "$ref": "#/definitions/salesStatistics"
     },
-    "eu_Sales": {
+    "eu_sales": {
       "$ref": "#/definitions/salesStatistics"
     },
-    "jp_Sales": {
+    "jp_sales": {
       "$ref": "#/definitions/salesStatistics"
     },
-    "other_Sales": {
+    "other_sales": {
       "$ref": "#/definitions/salesStatistics"
     },
-    "global_Sales": {
+    "global_sales": {
       "$ref": "#/definitions/salesStatistics"
     },
     "critic_score": {
@@ -120,11 +121,11 @@
     "platform",
     "yearofrelease",
     "genre",
-    "na_Sales",
-    "eu_Sales",
-    "jp_Sales",
-    "other_Sales",
-    "global_Sales",
+    "na_sales",
+    "eu_sales",
+    "jp_sales",
+    "other_sales",
+    "global_sales",
     "critic_score",
     "critic_count",
     "user_score",

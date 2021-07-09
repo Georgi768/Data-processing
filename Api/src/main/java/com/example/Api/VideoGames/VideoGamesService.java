@@ -54,7 +54,7 @@ public class VideoGamesService {
     }
     @Transactional
     public void updateVideoGameContent(long id, String country, String name) throws DoesNotExistException {
-        if(country.length() > 0 && name.length() > 0)
+        if(country.length() > 0 && Character.isUpperCase(country.charAt(0)) && name.length() > 0)
         {
             boolean isExist = this.videoGamesRepository.existsById(id);
             if(isExist)
@@ -66,7 +66,14 @@ public class VideoGamesService {
             {
                 throw new DoesNotExistException();
             }
+        }else
+        {
+            throw new RuntimeException("Invalid input");
         }
 
+    }
+
+    public List<Videogames> getCountryByName(String countryName) {
+       return this.videoGamesRepository.findAllVideoGamesBycountrywhereproduced(countryName);
     }
 }

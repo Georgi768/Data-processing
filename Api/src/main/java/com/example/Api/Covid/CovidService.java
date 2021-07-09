@@ -32,7 +32,7 @@ public class CovidService {
     }
 
     public void addNewCovidCountryCase(Covid19 covid19) throws AlreadyExistException {
-        Optional<Covid19> country = this.covidRepository.findCovid19ByCountry(covid19.getCountry());
+        Optional<Covid19> country = this.covidRepository.findCovid19Bycountry(covid19.getCountry());
         if(country.isPresent())
         {
             throw new AlreadyExistException();
@@ -56,9 +56,9 @@ public class CovidService {
 
     @Transactional
     public void updateCountryNameAndRegion(long id,String name,String region) throws AlreadyExistException {
-        if(name.length() > 0 && region.length() > 0)
+        if(name.length() > 0 && Character.isUpperCase(name.charAt(0)) && region.length() > 0 && Character.isUpperCase(region.charAt(0)))
         {
-            Optional<Covid19> exist = this.covidRepository.findCovid19ByCountry(name);
+            Optional<Covid19> exist = this.covidRepository.findCovid19Bycountry(name);
             if(exist.isPresent())
             {
                 throw  new AlreadyExistException();
@@ -68,7 +68,14 @@ public class CovidService {
                 country.setCountry(name);
                 country.setWHORegion(region);
             }
+        }else
+        {
+            throw new RuntimeException("Invalid input");
         }
 
+    }
+
+    public List<Covid19> getCovidCountry(String countryName) {
+        return this.covidRepository.findAllByCountry(countryName);
     }
 }
